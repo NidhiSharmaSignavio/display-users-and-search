@@ -1,11 +1,13 @@
 import './App.css';
-import Home from './Home';
-
+import Home from './components/Home';
+import UserProvider from './context_store/UserProvider';
 function App() {
   return (
-    <div className='App'>
-      <Home />
-    </div>
+    <UserProvider>
+      <div className='App'>
+        <Home />
+      </div>
+    </UserProvider>
   );
 }
 
