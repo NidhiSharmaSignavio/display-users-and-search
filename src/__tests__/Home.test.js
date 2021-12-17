@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import * as apiCalls from '../apiCalls';
 import Home from '../components/Home';
 import UserProvider from '../context_store/UserProvider';
@@ -39,39 +39,65 @@ const renderHomeWithGetUsersReturnValue = value => {
   );
 };
 
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
 test('should display no users to display is users is []', async () => {
   renderHomeWithGetUsersReturnValue([]);
-  expect(await screen.findByText('No users to display')).toBeVisible();
+  const textElement = await screen.findByText('No users to display');
+  await waitFor(() => {
+    expect(textElement).toBeVisible();
+  });
 });
 
 test('should display no users to display there is network error', async () => {
   renderHomeWithGetUsersReturnValue(null);
-  expect(await screen.findByText('No users to display')).toBeVisible();
+  const textElement = await screen.findByText('No users to display');
+  await waitFor(() => {
+    expect(textElement).toBeVisible();
+  });
 });
 
 test('should display list of users if no users to display', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userCards = await screen.findAllByTestId('user-card');
-  expect(userCards.length).toBe(users.length);
+  await waitFor(() => {
+    expect(userCards.length).toBe(users.length);
+  });
 });
 
 test('should display names of all users', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userNames = await screen.findAllByTestId('user-name');
-  expect(userNames.length).toBe(users.length);
-  expect(userNames[0].textContent).toBe(users[0].name);
+  await waitFor(() => {
+    expect(userNames.length).toBe(users.length);
+    expect(userNames[0].textContent).toBe(users[0].name);
+  });
 });
 
 test('should display city of all users', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userCities = await screen.findAllByTestId('user-city');
-  expect(userCities.length).toBe(users.length);
-  expect(userCities[0].textContent).toBe(users[0].address.city);
+  await waitFor(() => {
+    expect(userCities.length).toBe(users.length);
+    expect(userCities[0].textContent).toBe(users[0].address.city);
+  });
 });
 
 test('should display company name of all users', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userCompanies = await screen.findAllByTestId('user-company');
-  expect(userCompanies.length).toBe(users.length);
-  expect(userCompanies[0].textContent).toBe(users[0].company.name);
+  await waitFor(() => {
+    expect(userCompanies.length).toBe(users.length);
+    expect(userCompanies[0].textContent).toBe(users[0].company.name);
+  });
+});
+
+test('should display image of all users', async () => {
+  renderHomeWithGetUsersReturnValue(users);
+  const userImg = await screen.findAllByTestId('user-sm-img');
+  await waitFor(() => {
+    expect(userImg.length).toBe(users.length);
+  });
 });

@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import userReducer from './userReducer';
 import { useReducer } from 'react';
 import { getUsers } from '../apiCalls';
-import { GET_USERS } from './types';
+import { GET_USERS, SET_SEARCH_STRING } from './types';
 
 const initialState = {
   users: [],
@@ -23,6 +23,13 @@ const UserProvider = ({ children }) => {
     });
   };
 
+  const setSearchString = searchText => {
+    dispatch({
+      type: SET_SEARCH_STRING,
+      payload: searchText,
+    });
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -30,6 +37,7 @@ const UserProvider = ({ children }) => {
         user: state.user,
         findString: state.findString,
         loadUsers,
+        setSearchString,
       }}>
       {children}
     </UserContext.Provider>

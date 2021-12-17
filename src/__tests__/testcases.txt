@@ -1,0 +1,4 @@
+when user enters no input all users should be returned
+When user enters only spaces then all users should be returned
+When user enters 'Ni' users with username starting with Ni or roles starting with Ni or teams starting with Ni should be displayed
+The changes must be as the user types the letters

@@ -1,0 +1,70 @@
+.usersContainer {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  list-style: none;
+  height: auto;
+  align-self: center;
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.userCard {
+  background-color: var(--user-card-background);
+  border-radius: var(--card-search-border-radius);
+  box-shadow: var(--card-shadow);
+  min-width: 30%;
+  max-width: 30%;
+  padding: 0.5rem;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.userImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 40%;
+  max-width: 40%;
+  height: 100%;
+  margin-right: 0.5rem;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 1rem;
+}
+
+.image {
+  width: var(--img-height-width);
+  height: var(--img-height-width);
+  max-width: var(--img-height-width);
+  max-height: var(--img-height-width);
+  border-radius: var(--img-border-radius);
+}
+
+@media screen and (max-width: 990px) {
+  .usersContainer {
+    align-items: center;
+  }
+  .userCard {
+    min-width: 45%;
+    max-width: 45%;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .usersContainer {
+    align-items: center;
+    justify-content: center;
+  }
+  .userCard {
+    min-width: 80%;
+  }
+}

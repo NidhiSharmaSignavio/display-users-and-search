@@ -1,5 +1,6 @@
 import { getUsers } from '../apiCalls';
 import axios from 'axios';
+import { waitFor } from '@testing-library/react';
 
 jest.mock('axios');
 
@@ -33,11 +34,15 @@ const res = {
 test('should return null if there is network error', async () => {
   axios.get.mockImplementationOnce(() => Promise.reject('Network error'));
   const data = await getUsers();
-  expect(data).toBe(null);
+  await waitFor(() => {
+    expect(data).toBe(null);
+  });
 });
 
 test('should return list of users when axios request is successful', async () => {
   axios.get.mockResolvedValueOnce(res);
   const data = await getUsers();
-  expect(data.length).toBe(res.data.length);
+  await waitFor(() => {
+    expect(data.length).toBe(res.data.length);
+  });
 });
