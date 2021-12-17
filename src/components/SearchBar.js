@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../context_store/UserProvider';
+import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
   const { setSearchString, findString } = useContext(UserContext);
@@ -11,6 +12,7 @@ const SearchBar = () => {
   return (
     <div>
       <input
+        className={styles.searchInput}
         data-testid='search-text'
         type='text'
         placeholder='Search by name, username, city and company name'

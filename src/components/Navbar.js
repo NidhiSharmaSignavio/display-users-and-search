@@ -14,10 +14,12 @@ const Navbar = () => {
   );
   return (
     <div data-testid='navbar' className={styles.navbar}>
-      <div data-testid='brand-name'>
+      <div data-testid='brand-name' className={styles.brandContainer}>
         {pathname === '/' ? brandName : linkToHome}
       </div>
-      <div data-testid='search-bar-container'>
+      <div
+        data-testid='search-bar-container'
+        className={styles.searchContainer}>
         <SearchBar />
       </div>
     </div>

@@ -1,0 +1,14 @@
+.searchInput {
+  background-color: var(--signavio-color);
+  width: 100%;
+  outline: none;
+  border: none;
+  color: white;
+  opacity: 1;
+  padding: 1rem;
+}
+
+.searchInput::placeholder {
+  color: white;
+  opacity: 0.6;
+}
