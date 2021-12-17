@@ -117,7 +117,7 @@ describe('Search Users Feature', () => {
     });
   });
 
-  test('should display one customer with name Leanne Graham when user enters Le/le in search bar', async () => {
+  test('should display one customer when user enters Le/le in search bar', async () => {
     const searchString = 'le';
     const inputBox = await screen.findByTestId('search-text');
 
@@ -129,5 +129,15 @@ describe('Search Users Feature', () => {
     });
   });
 
-  test('should display two customers when user enters Ro in the search bar', () => {});
+  test('should display two customers when user enters "ro" in the search bar', async () => {
+    const searchString = 'ro';
+    const inputBox = await screen.findByTestId('search-text');
+
+    userEvent.type(inputBox, searchString);
+    const userCards = await screen.findAllByTestId('user-card');
+
+    await waitFor(() => {
+      expect(userCards.length).toBe(2);
+    });
+  });
 });

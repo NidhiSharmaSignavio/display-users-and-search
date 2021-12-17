@@ -13,6 +13,7 @@ const SearchBar = () => {
       <input
         data-testid='search-text'
         type='text'
+        placeholder='Search by name, username, city and company name'
         value={findString}
         onChange={handleSearchTextChange}
       />
