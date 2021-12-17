@@ -10,7 +10,8 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className={styles.searchIconBarContainer}>
+      <i className={`fa fa-search ${styles.searchIcon}`} aria-hidden='true' />
       <input
         className={styles.searchInput}
         data-testid='search-text'

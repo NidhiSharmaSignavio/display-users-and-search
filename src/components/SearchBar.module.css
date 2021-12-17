@@ -1,3 +1,14 @@
+.searchIconBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.searchIcon {
+  z-index: 1;
+  color: white;
+}
 .searchInput {
   background-color: var(--signavio-color);
   width: 100%;
