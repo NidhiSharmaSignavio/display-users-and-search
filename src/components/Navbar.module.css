@@ -11,9 +11,10 @@
   color: var(--user-card-background);
   box-shadow: var(--card-shadow);
 }
-.searchContainer {
-  width: 30%;
-}
 .brandContainer {
   width: 40%;
+}
+.searchContainer {
+  max-width: 30%;
+  width: auto;
 }

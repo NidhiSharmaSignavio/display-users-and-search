@@ -16,7 +16,7 @@ const SearchBar = () => {
         className={styles.searchInput}
         data-testid='search-text'
         type='text'
-        placeholder='Search by name, username, city and company name'
+        placeholder='Search Users'
         value={findString}
         onChange={handleSearchTextChange}
       />
