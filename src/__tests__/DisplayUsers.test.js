@@ -85,6 +85,15 @@ test('should display city of all users', async () => {
   });
 });
 
+test('should display username of all users', async () => {
+  renderHomeWithGetUsersReturnValue(users);
+  const userUsernames = await screen.findAllByTestId('user-username');
+  await waitFor(() => {
+    expect(userUsernames.length).toBe(users.length);
+    expect(userUsernames[0].textContent).toBe(users[0].username);
+  });
+});
+
 test('should display company name of all users', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userCompanies = await screen.findAllByTestId('user-company');

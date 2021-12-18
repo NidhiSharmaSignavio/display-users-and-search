@@ -20,7 +20,7 @@ const Users = () => {
           <div data-testid='user-name' className={styles.userName}>
             {user.name}
           </div>
-          <div data-testid='user-username' className={styles.userName}>
+          <div data-testid='user-username' className={styles.userUserName}>
             {user.username}
           </div>
           <div data-testid='user-company' className={styles.userCompany}>
