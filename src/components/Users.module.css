@@ -12,6 +12,7 @@
 }
 
 .userCard {
+  display: flex;
   background-color: var(--user-card-background);
   border-radius: var(--card-search-border-radius);
   box-shadow: var(--card-shadow);
@@ -19,8 +20,19 @@
   max-width: 30%;
   padding: 0.5rem;
   margin: 1rem;
-  display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.linkCard {
+  display: inherit;
+  flex-direction: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  text-decoration: none;
 }
 
 .userImage {

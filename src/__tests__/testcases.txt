@@ -1,4 +1,25 @@
+//user
+display "no users to display" if no users or no response from server
+display list of users if users are not empty
+display users: name, username, company name and location
+
+//search
 when user enters no input all users should be returned
 When user enters only spaces then all users should be returned
 When user enters 'Ni' users with username starting with Ni or roles starting with Ni or teams starting with Ni should be displayed
 The changes must be as the user types the letters
+
+//user profile
+1.display "no user information available" when:
+ no user information is available or 
+ while user information is loaded or 
+ searver error
+2. display user details like
+    image (bigger)
+    name
+    username
+    company name
+    location
+    email
+    phone number
+
