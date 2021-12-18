@@ -34,19 +34,38 @@
   margin-right: 0.5rem;
 }
 
-.userDetails {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin-left: 1rem;
-}
-
 .image {
   width: var(--img-height-width);
   height: var(--img-height-width);
   max-width: var(--img-height-width);
   max-height: var(--img-height-width);
   border-radius: var(--img-border-radius);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.userName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--signavio-color);
+}
+
+.userUserName {
+  color: var(--username-color);
+}
+
+.userCompany {
+  color: var(--company-name-color);
+}
+
+.userCity {
+  color: var(--location-color);
 }
 
 @media screen and (max-width: 990px) {
