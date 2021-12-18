@@ -14,7 +14,10 @@ const Users = () => {
     hasUsersToDisplay &&
     users.map(user => (
       <li key={user.id} data-testid='user-card' className={styles.userCard}>
-        <Link to={`/users/${user.id}`} className={styles.linkCard}>
+        <Link
+          to={`/users/${user.id}`}
+          data-testid='link-card'
+          className={styles.linkCard}>
           <div data-testid='user-sm-img' className={styles.userImage}>
             <img className={styles.image} alt={user.name} src={image}></img>
           </div>

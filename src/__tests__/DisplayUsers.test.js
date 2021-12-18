@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import App from '../App';
 import * as apiCalls from '../apiCalls';
-import Home from '../components/Home';
-import UserProvider from '../context_store/UserProvider';
 
 const users = [
   {
@@ -32,11 +31,7 @@ const users = [
 const renderHomeWithGetUsersReturnValue = value => {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(value);
-  render(
-    <UserProvider>
-      <Home />
-    </UserProvider>
-  );
+  render(<App />);
 };
 
 afterEach(() => {
