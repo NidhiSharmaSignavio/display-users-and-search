@@ -3,10 +3,11 @@ import { UserContext } from '../context_store/UserProvider';
 
 const useFilteredUsers = searchText => {
   const { users } = useContext(UserContext);
+
   return useMemo(() => {
     const findThis = searchText.trim();
     if (findThis === '') return users;
-    const regex = new RegExp('^' + searchText, 'i');
+    const regex = new RegExp('^' + findThis, 'i');
 
     return users.filter(
       user =>

@@ -31,9 +31,8 @@ const users = [
 const renderHomeWithGetUsersReturnValue = value => {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(value);
-  act(() => {
-    render(<App />);
-  });
+
+  render(<App />);
 };
 
 afterEach(() => {

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 import * as apiCalls from '../apiCalls';
 import userEvent from '@testing-library/user-event';
@@ -79,11 +79,12 @@ describe('Search Users Feature', () => {
   beforeEach(() => {
     const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
     mockGetUsers.mockResolvedValue(users);
+
     render(<App />);
   });
 
   afterEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
   test('should display input box that allows user to enter search string', async () => {
@@ -98,6 +99,7 @@ describe('Search Users Feature', () => {
     const inputBox = await screen.findByTestId('search-text');
 
     userEvent.type(inputBox, searchString);
+
     const userCards = await screen.findAllByTestId('user-card');
 
     await waitFor(() => {
@@ -110,6 +112,7 @@ describe('Search Users Feature', () => {
     const inputBox = await screen.findByTestId('search-text');
 
     userEvent.type(inputBox, searchString);
+
     const userCards = await screen.findAllByTestId('user-card');
 
     await waitFor(() => {
@@ -117,11 +120,12 @@ describe('Search Users Feature', () => {
     });
   });
 
-  test('should display one customer when user enters Le/le in search bar', async () => {
+  test('should display one user when user enters "le" in search bar', async () => {
     const searchString = 'le';
     const inputBox = await screen.findByTestId('search-text');
 
     userEvent.type(inputBox, searchString);
+
     const userCards = await screen.findAllByTestId('user-card');
 
     await waitFor(() => {
@@ -129,11 +133,12 @@ describe('Search Users Feature', () => {
     });
   });
 
-  test('should display two customers when user enters "ro" in the search bar', async () => {
+  test('should display two users when user enters "ro" in the search bar', async () => {
     const searchString = 'ro';
     const inputBox = await screen.findByTestId('search-text');
 
     userEvent.type(inputBox, searchString);
+
     const userCards = await screen.findAllByTestId('user-card');
 
     await waitFor(() => {
