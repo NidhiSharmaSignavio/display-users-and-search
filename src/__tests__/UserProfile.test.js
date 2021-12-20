@@ -28,20 +28,20 @@ const users = [
   },
 ];
 
-beforeEach(() => {
-  const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
-  mockGetUsers.mockResolvedValueOnce(users);
-  render(<App />);
-});
-
 afterEach(() => {
   jest.resetAllMocks();
 });
 
 test('should display users profile page when user clicks on a particular user on home page', async () => {
+  const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
+  mockGetUsers.mockResolvedValueOnce(users);
+  render(<App />);
+
   const userCards = await screen.findAllByTestId('link-card');
   fireEvent.click(userCards[0]);
+
   await waitFor(() => {
     expect(screen.queryByTestId('user-profile-page')).toBeVisible();
+    expect(screen.queryByTestId('user-lg-image')).toBeVisible();
   });
 });

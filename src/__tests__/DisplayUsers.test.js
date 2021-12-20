@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import App from '../App';
 import * as apiCalls from '../apiCalls';
 
@@ -31,7 +31,9 @@ const users = [
 const renderHomeWithGetUsersReturnValue = value => {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(value);
-  render(<App />);
+  act(() => {
+    render(<App />);
+  });
 };
 
 afterEach(() => {
