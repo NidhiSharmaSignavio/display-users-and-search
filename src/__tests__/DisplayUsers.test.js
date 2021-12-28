@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 import * as apiCalls from '../apiCalls';
 
@@ -36,12 +36,14 @@ const renderHomeWithGetUsersReturnValue = value => {
 };
 
 afterEach(() => {
-  jest.resetAllMocks();
+  jest.restoreAllMocks();
 });
 
 test('should display no users to display is users is []', async () => {
   renderHomeWithGetUsersReturnValue([]);
+
   const textElement = await screen.findByText('No users to display');
+
   await waitFor(() => {
     expect(textElement).toBeVisible();
   });
@@ -49,13 +51,15 @@ test('should display no users to display is users is []', async () => {
 
 test('should display no users to display there is network error', async () => {
   renderHomeWithGetUsersReturnValue(null);
+
   const textElement = await screen.findByText('No users to display');
+
   await waitFor(() => {
     expect(textElement).toBeVisible();
   });
 });
 
-test('should display list of users if no users to display', async () => {
+test('should display list of users if there is users list', async () => {
   renderHomeWithGetUsersReturnValue(users);
   const userCards = await screen.findAllByTestId('user-card');
   await waitFor(() => {

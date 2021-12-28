@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { UserContext } from '../context_store/UserProvider';
+import styles from './UserProfile.module.css';
 
 const UserProfile = () => {
+  const { id } = useParams();
+  const { users } = useContext(UserContext);
+  const [myUsers, setMyUsers] = useState([]);
+  useEffect(() => {
+    if (users && users.length > 0) setMyUsers(users);
+  }, [users]);
+  const hasUsers = myUsers && myUsers.length > 0;
+  const matchedUser = myUsers.filter(user => user.id === parseInt(id))[0];
+  const user = hasUsers && matchedUser;
+
   return (
-    <div data-testid='user-profile-page' style={{ padding: '70px' }}>
-      <div data-testid='user-lg-image'></div>
+    <div
+      data-testid='user-profile-page'
+      className={`routePage ${styles.userProfilePage}`}>
+      {user ? (
+        <div className={styles.userProfileContainer}>
+          <div data-testid='user-lg-image'>
+            <img alt='Name of user' src=''></img>
+            {user.name}
+          </div>
+        </div>
+      ) : (
+        'No user information available'
+      )}
     </div>
   );
 };

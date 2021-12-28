@@ -1,6 +1,6 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, cleanup } from '@testing-library/react';
 import * as apiCalls from '../apiCalls';
-import App from '../App';
+import UserProfile from '../components/UserProfile';
 
 const users = [
   {
@@ -30,18 +30,27 @@ const users = [
 
 afterEach(() => {
   jest.resetAllMocks();
+  cleanup();
 });
 
-test('should display users profile page when user clicks on a particular user on home page', async () => {
+const renderUserProfileAndMockAxios = () => {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(users);
-  render(<App />);
+  render(<UserProfile />);
+};
 
-  const userCards = await screen.findAllByTestId('link-card');
-  fireEvent.click(userCards[0]);
+test('should display users profile page with user image when user clicks on a particular user on home page', async () => {
+  renderUserProfileAndMockAxios();
 
   await waitFor(() => {
     expect(screen.queryByTestId('user-profile-page')).toBeVisible();
+  });
+});
+
+test('should display user image on user profile page', async () => {
+  renderUserProfileAndMockAxios();
+
+  await waitFor(() => {
     expect(screen.queryByTestId('user-lg-image')).toBeVisible();
   });
 });

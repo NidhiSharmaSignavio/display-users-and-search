@@ -1,0 +1,16 @@
+.userProfilePage {
+  flex-direction: column;
+}
+
+.userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}

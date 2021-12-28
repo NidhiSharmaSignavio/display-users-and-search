@@ -1,148 +1,67 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import App from '../App';
 import * as apiCalls from '../apiCalls';
 import userEvent from '@testing-library/user-event';
+import { users } from './users';
 
-const users = [
-  {
-    id: 1,
-    name: 'Leanne Graham',
-    username: 'Bret',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496',
-      },
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets',
-    },
-  },
-  {
-    id: 2,
-    name: 'Ervin Howell',
-    username: 'Antonette',
-    email: 'Shanna@melissa.tv',
-    address: {
-      street: 'Victor Plains',
-      suite: 'Suite 879',
-      city: 'Wisokyburgh',
-      zipcode: '90566-7771',
-      geo: {
-        lat: '-43.9509',
-        lng: '-34.4618',
-      },
-    },
-    phone: '010-692-6593 x09125',
-    website: 'anastasia.net',
-    company: {
-      name: 'Deckow-Crist',
-      catchPhrase: 'Proactive didactic contingency',
-      bs: 'synergize scalable supply-chains',
-    },
-  },
-  {
-    id: 3,
-    name: 'Clementine Bauch',
-    username: 'Samantha',
-    email: 'Nathan@yesenia.net',
-    address: {
-      street: 'Douglas Extension',
-      suite: 'Suite 847',
-      city: 'McKenziehaven',
-      zipcode: '59590-4157',
-      geo: {
-        lat: '-68.6102',
-        lng: '-47.0653',
-      },
-    },
-    phone: '1-463-123-4447',
-    website: 'ramiro.info',
-    company: {
-      name: 'Romaguera-Jacobson',
-      catchPhrase: 'Face to face bifurcated interface',
-      bs: 'e-enable strategic applications',
-    },
-  },
-];
+beforeEach(() => {
+  const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
+  mockGetUsers.mockResolvedValue(users);
 
-describe('Search Users Feature', () => {
-  beforeEach(() => {
-    const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
-    mockGetUsers.mockResolvedValue(users);
+  render(<App />);
+});
 
-    render(<App />);
-  });
+afterEach(() => {
+  jest.resetAllMocks();
+});
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+test('should display input box that allows user to enter search string', () => {
+  const inputBox = screen.queryByTestId('search-text');
 
-  test('should display input box that allows user to enter search string', async () => {
-    const inputBox = await screen.findByTestId('search-text');
-    await waitFor(() => {
-      expect(inputBox).toBeVisible();
-    });
-  });
+  expect(inputBox).toBeVisible();
+});
 
-  test('should display all users when search string is empty', async () => {
-    const searchString = '';
-    const inputBox = await screen.findByTestId('search-text');
+test('should display all users when search string is empty', () => {
+  const searchString = '';
+  const inputBox = screen.queryByTestId('search-text');
 
-    userEvent.type(inputBox, searchString);
+  userEvent.type(inputBox, searchString);
 
-    const userCards = await screen.findAllByTestId('user-card');
+  const userCards = screen.queryAllByTestId('user-card');
+  console.log(userCards.length);
 
-    await waitFor(() => {
-      expect(userCards.length).toBe(3);
-    });
-  });
+  expect(userCards.length).toBe(users.length);
+});
 
-  test('should display all users when search string is space only', async () => {
-    const searchString = ' ';
-    const inputBox = await screen.findByTestId('search-text');
+test('should display all users when search string is space only', () => {
+  const searchString = ' ';
+  const inputBox = screen.queryByTestId('search-text');
 
-    userEvent.type(inputBox, searchString);
+  userEvent.type(inputBox, searchString);
 
-    const userCards = await screen.findAllByTestId('user-card');
+  const userCards = screen.queryAllByTestId('user-card');
 
-    await waitFor(() => {
-      expect(userCards.length).toBe(3);
-    });
-  });
+  expect(userCards.length).toBe(users.length);
+});
 
-  test('should display one user when user enters "le" in search bar', async () => {
-    const searchString = 'le';
-    const inputBox = await screen.findByTestId('search-text');
+test('should display one user when user enters "le" in search bar', () => {
+  const searchString = 'le';
+  const inputBox = screen.queryByTestId('search-text');
 
-    userEvent.type(inputBox, searchString);
+  userEvent.type(inputBox, searchString);
 
-    const userCards = await screen.findAllByTestId('user-card');
+  const userCards = screen.queryAllByTestId('user-card');
 
-    await waitFor(() => {
-      expect(userCards.length).toBe(1);
-    });
-  });
+  expect(userCards.length).toBe(1);
+});
 
-  test('should display two users when user enters "ro" in the search bar', async () => {
-    const searchString = 'ro';
-    const inputBox = await screen.findByTestId('search-text');
+test('should display two users when user enters "ro" in the search bar', () => {
+  const searchString = 'ro';
+  const inputBox = screen.queryByTestId('search-text');
 
-    userEvent.type(inputBox, searchString);
+  userEvent.type(inputBox, searchString);
 
-    const userCards = await screen.findAllByTestId('user-card');
+  const userCards = screen.queryAllByTestId('user-card');
 
-    await waitFor(() => {
-      expect(userCards.length).toBe(2);
-    });
-  });
+  expect(userCards.length).toBe(2);
 });
