@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { UserContext } from '../context_store/UserProvider';
 import styles from './UserProfile.module.css';
 
@@ -7,12 +7,16 @@ const UserProfile = () => {
   const { id } = useParams();
   const { users } = useContext(UserContext);
   const [myUsers, setMyUsers] = useState([]);
+
   useEffect(() => {
     if (users && users.length > 0) setMyUsers(users);
   }, [users]);
+
   const hasUsers = myUsers && myUsers.length > 0;
   const matchedUser = myUsers.filter(user => user.id === parseInt(id))[0];
   const user = hasUsers && matchedUser;
+  console.log(myUsers);
+  console.log(id);
 
   return (
     <div

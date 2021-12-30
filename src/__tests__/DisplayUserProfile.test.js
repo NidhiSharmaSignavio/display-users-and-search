@@ -1,56 +1,44 @@
-import { render, screen, waitFor, cleanup } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import * as apiCalls from '../apiCalls';
 import UserProfile from '../components/UserProfile';
+import { users } from './users';
+import { useParams } from 'react-router-dom';
+import { UserContext } from '../context_store/UserProvider';
 
-const users = [
-  {
-    id: 1,
-    name: 'Leanne Graham',
-    username: 'Bret',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496',
-      },
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets',
-    },
-  },
-];
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: jest.fn(),
+}));
 
-afterEach(() => {
-  jest.resetAllMocks();
-  cleanup();
-});
-
-const renderUserProfileAndMockAxios = () => {
+function mockAPICall() {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(users);
-  render(<UserProfile />);
-};
+}
+
+beforeEach(() => {
+  mockAPICall();
+  useParams.mockReturnValue({ id: '1' });
+  render(
+    <UserContext.Provider value={{ users }}>
+      <UserProfile />
+    </UserContext.Provider>
+  );
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 test('should display users profile page with user image when user clicks on a particular user on home page', async () => {
-  renderUserProfileAndMockAxios();
-
   await waitFor(() => {
     expect(screen.queryByTestId('user-profile-page')).toBeVisible();
   });
 });
 
 test('should display user image on user profile page', async () => {
-  renderUserProfileAndMockAxios();
+  const picture = await screen.findByTestId('user-lg-image');
 
   await waitFor(() => {
-    expect(screen.queryByTestId('user-lg-image')).toBeVisible();
+    expect(picture).toBeVisible();
   });
 });
