@@ -23,12 +23,15 @@ const UserProfile = () => {
       className={`routePage ${styles.userProfilePage}`}>
       {user ? (
         <div className={styles.userProfileContainer}>
-          <div data-testid='user-lg-image'>
+          <div data-testid='user-lg-image' className={styles.imageContainer}>
             <img alt='Name of user' src={image} className={styles.image} />
+            <div data-testid='userprofile-name'>
+              <h3 style={{ color: 'var(--signavio-color)' }}>{user.name}</h3>
+            </div>
           </div>
           <div className={styles.userProfileDetails}>
-            <div data-testid='userprofile-name' className={styles.row}>
-              <label>{user.name}</label>
+            <div data-testid='userprofile-email' className={styles.row}>
+              <label>{user.email}</label>
             </div>
             <div data-testid='userprofile-company' className={styles.row}>
               <label>{user.company.name}</label>
@@ -37,10 +40,8 @@ const UserProfile = () => {
               <label>{user.address.city}</label>
             </div>
           </div>
+
           <div className={styles.userProfileContact}>
-            <div data-testid='userprofile-email' className={styles.row}>
-              <label>{user.email}</label>
-            </div>
             <div data-testid='userprofile-phone' className={styles.row}>
               <label>{user.phone}</label>
             </div>
