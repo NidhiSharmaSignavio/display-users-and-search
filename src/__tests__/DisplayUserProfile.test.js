@@ -74,3 +74,11 @@ test('should display user email', async () => {
     expect(email).toBeVisible();
   });
 });
+
+test('should display user phone', async () => {
+  const phone = await screen.findByTestId('userprofile-phone');
+
+  await waitFor(() => {
+    expect(phone).toBeVisible();
+  });
+});

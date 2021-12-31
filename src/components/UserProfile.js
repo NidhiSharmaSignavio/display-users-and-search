@@ -32,6 +32,7 @@ const UserProfile = () => {
             <div data-testid='userprofile-city'>{user.address.city}</div>
             <div>
               <div data-testid='userprofile-email'>{user.email}</div>
+              <div data-testid='userprofile-phone'>{user.phone}</div>
             </div>
           </div>
         </div>
