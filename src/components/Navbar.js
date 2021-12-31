@@ -6,10 +6,14 @@ import SearchBar from './SearchBar';
 const Navbar = () => {
   const location = useLocation();
   const { pathname } = location;
-  const brandName = 'Signavio';
+  const brandName = (
+    <Link to='/' className={styles.backLink}>
+      Signavio
+    </Link>
+  );
   const linkToHome = (
-    <Link to='/' styles={{ textDecoration: 'none' }}>
-      Back to Home
+    <Link to='/' className={styles.backLink}>
+      <i className={`fas fa-arrow-left ${styles.backLink}`} color='white'></i>
     </Link>
   );
   return (

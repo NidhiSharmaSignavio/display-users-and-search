@@ -18,3 +18,12 @@
   max-width: 30%;
   width: auto;
 }
+
+.backLink:visited,
+.backLink:active,
+.backLink {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+}
