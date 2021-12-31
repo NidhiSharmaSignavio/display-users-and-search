@@ -10,10 +10,10 @@ jest.mock('react-router-dom', () => ({
   useParams: jest.fn(),
 }));
 
-function mockAPICall() {
+const mockAPICall = () => {
   const mockGetUsers = jest.spyOn(apiCalls, 'getUsers');
   mockGetUsers.mockResolvedValueOnce(users);
-}
+};
 
 beforeEach(() => {
   mockAPICall();
@@ -40,5 +40,23 @@ test('should display user image on user profile page', async () => {
 
   await waitFor(() => {
     expect(picture).toBeVisible();
+  });
+});
+
+test('should display user name', async () => {
+  const name = await screen.findByTestId('userprofile-name');
+
+  await waitFor(() => {
+    expect(name).toBeVisible();
+  });
+});
+
+test('should display user company, team and location', async () => {
+  const company = await screen.findByTestId('userprofile-company');
+  const team = await screen.findByTestId('userprofile-team');
+  const location = await screen.findByTestId('userprofile-location');
+
+  await waitFor(() => {
+    expect(company).toBeVisible();
   });
 });
