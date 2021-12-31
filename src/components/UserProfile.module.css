@@ -1,5 +1,16 @@
 .userProfilePage {
+  display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+  margin-top: 70px;
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+  align-items: space-evenly;
+  justify-content: center;
+  border: 1px solid red;
 }
 
 .userProfileContainer {
@@ -9,10 +20,9 @@
   height: auto;
   align-self: center;
   padding: 2rem 1rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  border: 1px solid red;
+  border: 1px solid blue;
 }
 
 .image {
@@ -23,11 +33,26 @@
 .userProfileDetails {
   display: flex;
   flex-direction: column;
+  justify-content: top;
+  text-align: left;
+  margin-left: 1rem;
 }
 
 .userProfileContact {
   display: flex;
   flex-direction: row;
   width: 100%;
+  justify-content: space-evenly;
+}
+
+.row {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  margin-left: 1rem;
+}
+.row label {
+  padding: 0.2rem;
+  margin: 0.2rem;
 }
