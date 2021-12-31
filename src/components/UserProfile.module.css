@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: space-evenly;
   box-shadow: var(--card-shadow);
+  border-radius: var(--card-search-border-radius);
 }
 
 .imageContainer {
@@ -38,8 +39,8 @@
 }
 
 .image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
