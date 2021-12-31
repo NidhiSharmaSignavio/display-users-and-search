@@ -66,3 +66,11 @@ test('should display user city', async () => {
     expect(city).toBeVisible();
   });
 });
+
+test('should display user email', async () => {
+  const email = await screen.findByTestId('userprofile-email');
+
+  await waitFor(() => {
+    expect(email).toBeVisible();
+  });
+});
