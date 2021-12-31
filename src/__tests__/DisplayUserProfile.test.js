@@ -51,12 +51,19 @@ test('should display user name', async () => {
   });
 });
 
-test('should display user company, team and location', async () => {
+test('should display user company', async () => {
   const company = await screen.findByTestId('userprofile-company');
+
+  await waitFor(() => {
+    expect(company).toBeVisible();
+  });
+});
+
+test('should display user team', async () => {
   const team = await screen.findByTestId('userprofile-team');
   const location = await screen.findByTestId('userprofile-location');
 
   await waitFor(() => {
-    expect(company).toBeVisible();
+    expect(team).toBeVisible();
   });
 });

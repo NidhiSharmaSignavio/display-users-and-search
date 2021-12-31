@@ -28,6 +28,7 @@ const UserProfile = () => {
           </div>
           <div>
             <div data-testid='userprofile-name'>{user.name}</div>
+            <div data-testid='userprofile-company'>{user.company.name}</div>
           </div>
         </div>
       ) : (
