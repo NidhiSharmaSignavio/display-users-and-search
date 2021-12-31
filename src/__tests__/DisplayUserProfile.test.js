@@ -82,3 +82,11 @@ test('should display user phone', async () => {
     expect(phone).toBeVisible();
   });
 });
+
+test('should display website', async () => {
+  const website = await screen.findByTestId('userprofile-website');
+
+  await waitFor(() => {
+    expect(website).toBeVisible();
+  });
+});

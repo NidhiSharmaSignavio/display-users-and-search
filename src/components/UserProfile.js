@@ -28,25 +28,24 @@ const UserProfile = () => {
           </div>
           <div className={styles.userProfileDetails}>
             <div data-testid='userprofile-name' className={styles.row}>
-              <label>Name</label>
               <label>{user.name}</label>
             </div>
             <div data-testid='userprofile-company' className={styles.row}>
-              <label>Company</label>
               <label>{user.company.name}</label>
             </div>
             <div data-testid='userprofile-city' className={styles.row}>
-              <label>Location</label>
               <label>{user.address.city}</label>
             </div>
-
+          </div>
+          <div className={styles.userProfileContact}>
             <div data-testid='userprofile-email' className={styles.row}>
-              <label>Email</label>
               <label>{user.email}</label>
             </div>
             <div data-testid='userprofile-phone' className={styles.row}>
-              <label>Phone</label>
               <label>{user.phone}</label>
+            </div>
+            <div data-testid='userprofile-website' className={styles.row}>
+              <label>{user.website}</label>
             </div>
           </div>
         </div>

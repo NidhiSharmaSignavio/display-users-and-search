@@ -7,22 +7,20 @@
   align-self: center;
   margin-top: 70px;
   padding: 2rem 1rem;
-  flex-wrap: wrap;
   align-items: space-evenly;
   justify-content: center;
-  border: 1px solid red;
 }
 
 .userProfileContainer {
   display: flex;
-  width: 100%;
-  max-width: 100%;
+  width: 60%;
+  max-width: 60%;
   height: auto;
   align-self: center;
   padding: 2rem 1rem;
   align-items: center;
-  justify-content: center;
-  border: 1px solid blue;
+  justify-content: space-evenly;
+  box-shadow: 1px 1px 3px lightgray;
 }
 
 .image {
@@ -38,21 +36,26 @@
   margin-left: 1rem;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .userProfileContact {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: top;
+  text-align: left;
+  padding-left: 1rem;
+  border-left: 0.5px solid lightgray;
 }
 
 .row {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
-  margin-left: 1rem;
 }
 .row label {
-  padding: 0.2rem;
-  margin: 0.2rem;
+  margin: 0.5rem 1.2rem;
 }
