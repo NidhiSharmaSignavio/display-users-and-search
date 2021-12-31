@@ -19,3 +19,15 @@
   width: 200px;
   height: 200px;
 }
+
+.userProfileDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.userProfileContact {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}

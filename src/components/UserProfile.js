@@ -26,13 +26,17 @@ const UserProfile = () => {
           <div data-testid='user-lg-image'>
             <img alt='Name of user' src={image} className={styles.image} />
           </div>
-          <div>
-            <div data-testid='userprofile-name'>{user.name}</div>
-            <div data-testid='userprofile-company'>{user.company.name}</div>
-            <div data-testid='userprofile-city'>{user.address.city}</div>
-            <div>
-              <div data-testid='userprofile-email'>{user.email}</div>
-              <div data-testid='userprofile-phone'>{user.phone}</div>
+          <div className={styles.userProfileDetails}>
+            <div data-testid='userprofile-name'>Name: {user.name}</div>
+            <div data-testid='userprofile-company'>
+              Company: {user.company.name}
+            </div>
+            <div data-testid='userprofile-city'>
+              Location: {user.address.city}
+            </div>
+            <div className={styles.userProfileContact}>
+              <div data-testid='userprofile-email'>Email{user.email}</div>
+              <div data-testid='userprofile-phone'>Phone{user.phone}</div>
             </div>
           </div>
         </div>
